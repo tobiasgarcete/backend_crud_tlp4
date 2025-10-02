@@ -8,7 +8,7 @@ async function main() {
   await connectMongo();
   const app = createServer();
   app.listen(port, () => {
-    console.log(`FORMOTEX (Mongo) API running on http://localhost:${port}`);
+    console.log(` API running on http://localhost:${port}`);
   });
 }
 

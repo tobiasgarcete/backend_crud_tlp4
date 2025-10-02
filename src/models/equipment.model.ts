@@ -10,10 +10,10 @@ const EquipmentSchema = new Schema({
   purchaseDate: { type: Date },
   warrantyUntil: { type: Date },
   assignedToId: { type: Schema.Types.ObjectId, ref: 'User', index: true },
-  locationId: { type: Schema.Types.ObjectId, ref: 'Location', index: true },
+  locationId: { type: Schema.Types.ObjectId, ref: 'Ubicacion', index: true },
   lastSeenAt: { type: Date },
 }, { timestamps: true });
 
 export type EquipmentDoc = InferSchemaType<typeof EquipmentSchema> & { _id: string };
 
-export const EquipmentModel = mongoose.model('Equipment', EquipmentSchema);
+export const EquipmentModel = mongoose.model('Equipamiento', EquipmentSchema);

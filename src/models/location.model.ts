@@ -8,4 +8,4 @@ const LocationSchema = new Schema({
 
 export type LocationDoc = InferSchemaType<typeof LocationSchema> & { _id: string };
 
-export const LocationModel = mongoose.model('Location', LocationSchema);
+export const LocationModel = mongoose.model('ubicacion', LocationSchema);

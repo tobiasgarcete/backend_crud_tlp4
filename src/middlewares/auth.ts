@@ -19,7 +19,7 @@ declare global {
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   const auth = req.headers.authorization;
   if (!auth || !auth.startsWith('Bearer ')) {
-    return res.status(401).json({ error: 'Missing or invalid Authorization header' });
+    return res.status(401).json({ error: 'Encabezado de autorización faltante o no válido' });
   }
   const token = auth.replace('Bearer ', '');
   try {
@@ -27,14 +27,14 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     req.user = payload;
     next();
   } catch {
-    return res.status(401).json({ error: 'Invalid or expired token' });
+    return res.status(401).json({ error: 'Token invalido o expirado' });
   }
 }
 
 export function requireRole(...roles: Array<'ADMIN'|'USER'>) {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (!req.user) return res.status(401).json({ error: 'Unauthorized' });
-    if (!roles.includes(req.user.role)) return res.status(403).json({ error: 'Forbidden: insufficient role' });
+    if (!req.user) return res.status(401).json({ error: 'No autorizado' });
+    if (!roles.includes(req.user.role)) return res.status(403).json({ error: 'Prohibido: rol insuficiente' });
     next();
   };
 }

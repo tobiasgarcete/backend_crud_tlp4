@@ -3,7 +3,7 @@ import { LocationModel } from '../models/location.model.js';
 
 export async function createLocation(data: { code: string; name: string; notes?: string }) {
   const dup = await LocationModel.findOne({ code: data.code }).lean();
-  if (dup) throw new HttpError(409, 'Location code already exists');
+  if (dup) throw new HttpError(409, 'ubicacion ya existente');
   const loc = await LocationModel.create(data);
   return { id: loc._id.toString(), code: loc.code, name: loc.name, notes: loc.notes };
 }
